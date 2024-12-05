@@ -1,3 +1,4 @@
+// script.js
 fetch('/api/tasks')
   .then(response => response.json())
   .then(tasks => {
@@ -9,10 +10,9 @@ fetch('/api/tasks')
     });
   })
   .catch(error => {
-        handleError('Erreur lors du chargement des tâches:', error);
-    
-    function handleError(message, error) {
-      // Implement custom error handling logic here
-      alert(`${message} ${error}`);
-    }
+    handleError('Erreur lors du chargement des tâches:', error);
   });
+
+function handleError(message, error) {
+  alert(`${message} ${error}`);
+}
