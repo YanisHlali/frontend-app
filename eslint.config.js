@@ -10,7 +10,7 @@ module.exports = {
       vue: require('eslint-plugin-vue'),
     },
     rules: {
-      'no-console': 'warn',
+      'no-console': 'warn',  // Assurez-vous que cette règle est définie correctement
       'no-debugger': 'warn',
       'vue/no-unused-vars': 'error',
     },

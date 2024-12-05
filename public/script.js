@@ -9,5 +9,10 @@ fetch('/api/tasks')
     });
   })
   .catch(error => {
-    console.error('Erreur lors du chargement des tâches:', error);
+        handleError('Erreur lors du chargement des tâches:', error);
+    
+    function handleError(message, error) {
+      // Implement custom error handling logic here
+      alert(`${message} ${error}`);
+    }
   });
