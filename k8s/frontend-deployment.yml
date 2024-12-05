@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-node
+  labels:
+    app: frontend-node
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend-node
+  template:
+    metadata:
+      labels:
+        app: frontend-node
+    spec:
+      containers:
+        - name: frontend-node-container
+          image: your-dockerhub-username/frontend-node-app:latest  # Remplacez par votre image Docker
+          ports:
+            - containerPort: 8080
+          env:
+            - name: NODE_ENV
+              value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-node-service
+spec:
+  selector:
+    app: frontend-node
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-node-config
+data:
+  VITE_API_URL: "http://tasks-service:32062/api"  # L'URL de votre service backend
+  VITE_APP_URL: "http://frontend-node-service:80"
